@@ -8,14 +8,66 @@ const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 
 let oldInputValue;
 
-//Funções
-const saveTodo = (text) => {
+//LocalStorage
+const localStorageTodos = JSON.parse(localStorage
+    .getItem('todos'));
 
+let todos = localStorage
+  .getItem('todos') !== null ? localStorageTodos : [];
+
+const updateLocalStorage = () => {
+
+    localStorage.setItem('todos', JSON.stringify(todos))
+}
+
+const updateTodoLocalStorage = id => {
+
+    todos.forEach((todo) => {
+        if (todo.id == id) {
+            todo.status = todo.status == "P" ? "F" : "P";
+        }
+    });
+
+    updateLocalStorage()
+}
+    
+const generateID = () => Math.round(Math.random() * 1000);
+
+const removeTodo = id => {
+    todos = todos.filter(todo => 
+      todo.id != id)
+
+    updateLocalStorage();
+    init();
+}
+
+const addTodosArray = (name, status) => {
+
+    todos.push({
+        id: generateID(), 
+        name: name, 
+        status: status
+    });
+
+    updateLocalStorage()
+}
+
+//Funções
+const saveTodo = ({ name, status, id }) => {
+    if (id === '') {
+        addTodosArray(name, "P");
+    }
+    
     const todo = document.createElement("div");
+    todo.setAttribute("data-id", id);
     todo.classList.add("todo");
 
+    if (status !== "P") {
+        todo.classList.add("done");
+    }
+
     const todoTitle = document.createElement("h3");
-    todoTitle.innerText = text;
+    todoTitle.innerText = name;
     todo.appendChild(todoTitle);
 
     const doneBtn = document.createElement("button");
@@ -61,6 +113,14 @@ const updateTodo = (text) => {
     })
 }
 
+const init = () => {
+
+    todoList.innerHTML = '';
+    todos.forEach(saveTodo);
+}
+  
+init();
+
 //Eventos
 todoForm.addEventListener("submit", (e) => {
 
@@ -69,7 +129,7 @@ todoForm.addEventListener("submit", (e) => {
     const inputValue = todoInput.value;
 
     if (inputValue) {
-        saveTodo(inputValue);
+        saveTodo({ name: inputValue, status: "P", id: '' });
     }
 });
 
@@ -84,18 +144,25 @@ document.addEventListener("click", (e) => {
         todoTitle = parentEl.querySelector("h3").innerText;
     }
 
-
     if (targetEl.classList.contains("finish-todo")) {
 
+        const id = parentEl.getAttribute("data-id");
+        updateTodoLocalStorage(id)
         parentEl.classList.toggle("done");
     }
 
     if (targetEl.classList.contains("remove-todo")) {
 
+        const id = parentEl.getAttribute("data-id");
+        removeTodo(id);
         parentEl.remove();
     }
 
     if (targetEl.classList.contains("edit-todo")) {
+
+        const id = parentEl.getAttribute("data-id");
+        parentEl.classList.toggle("edit");
+        updateTodoLocalStorage(id);
 
         toggleForms();
 
