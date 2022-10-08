@@ -134,7 +134,7 @@ todoForm.addEventListener("submit", (e) => {
     const inputValue = todoInput.value;
 
     if (inputValue) {
-        
+
         saveTodo({ name: inputValue, status: "P", id: '' });
     }
 });
@@ -193,6 +193,9 @@ editForm.addEventListener("submit", (e) => {
 
         updateTodo(editInputValue);
     }
+
+    const localStorageTodos = JSON.parse(localStorage
+        .getItem('editInputValue'));
 
     toggleForms();
 });
