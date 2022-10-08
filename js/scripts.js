@@ -5,6 +5,7 @@ const todoList = document.querySelector("#todo-list");
 const editForm = document.querySelector("#edit-form");
 const editInput = document.querySelector("#edit-input");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
+const filterSelect = document.querySelector("#filter-select");
 
 let oldInputValue;
 
@@ -183,6 +184,31 @@ cancelEditBtn.addEventListener("click", (e) => {
     toggleForms();
 });
 
+filterSelect.addEventListener("change", (e) => {
+
+    todoList.innerHTML = '';
+    if (filterSelect.value === "all") {
+        todos.forEach(saveTodo);
+    }
+});
+
+filterSelect.addEventListener("change", (e) => {
+
+    todoList.innerHTML = '';
+    if (filterSelect.value === "done") {
+        feitos.forEach(saveTodo);
+    }
+});
+
+filterSelect.addEventListener("change", (e) => {
+
+    todoList.innerHTML = '';
+    if (filterSelect.value === "todo") {
+        afazer.forEach(saveTodo);
+    }
+});
+
+
 editForm.addEventListener("submit", (e) => {
 
     e.preventDefault();
@@ -193,9 +219,6 @@ editForm.addEventListener("submit", (e) => {
 
         updateTodo(editInputValue);
     }
-
-    const localStorageTodos = JSON.parse(localStorage
-        .getItem('editInputValue'));
 
     toggleForms();
 });
