@@ -190,29 +190,26 @@ cancelEditBtn.addEventListener("click", (e) => {
     toggleForms();
 });
 
-
-
-
 filterSelect.addEventListener("change", (e) => {
+    
+   const done = document.querySelectorAll(".todoDone");
 
-    todoList.innerHTML = '';
+   done.forEach((todoDone) => {
 
-    if (todoList === "done") {
+        if (filterSelect.value == "done") {
+            
+            todos.forEach(todoDone);
+        }
+   })
 
-        filterSelect.forEach(saveTodo);
-    }
-
-
+   todoList.innerHTML = '';
+  
     if (filterSelect.value === "all") {
 
         todos.forEach(saveTodo);
     } 
     
 });
-
-
-
-
 
 editForm.addEventListener("submit", (e) => {
 
