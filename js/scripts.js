@@ -184,29 +184,29 @@ cancelEditBtn.addEventListener("click", (e) => {
     toggleForms();
 });
 
+
+
 filterSelect.addEventListener("change", (e) => {
+    
+    const todoTitle = document.querySelectorAll("#filter");
+
+    
 
     todoList.innerHTML = '';
+
     if (filterSelect.value === "all") {
         todos.forEach(saveTodo);
     }
 });
 
-filterSelect.addEventListener("change", (e) => {
 
-    todoList.innerHTML = '';
-    if (filterSelect.value === "done") {
-        feitos.forEach(saveTodo);
-    }
-});
 
-filterSelect.addEventListener("change", (e) => {
+//const doneBtn = document.createElement("button");
+    //doneBtn.classList.add("finish-todo");
+    //doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+    //todo.appendChild(doneBtn);
 
-    todoList.innerHTML = '';
-    if (filterSelect.value === "todo") {
-        afazer.forEach(saveTodo);
-    }
-});
+
 
 
 editForm.addEventListener("submit", (e) => {
