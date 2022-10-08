@@ -9,6 +9,12 @@ const filterSelect = document.querySelector("#filter-select");
 
 let oldInputValue;
 
+/*
+* Status
+* P - pendente
+* F - Finalizado
+* */
+
 //LocalStorage
 const localStorageTodos = JSON.parse(localStorage
     .getItem('todos'));
@@ -186,25 +192,24 @@ cancelEditBtn.addEventListener("click", (e) => {
 
 
 
-filterSelect.addEventListener("change", (e) => {
-    
-    const todoTitle = document.querySelectorAll("#filter");
 
-    
+filterSelect.addEventListener("change", (e) => {
 
     todoList.innerHTML = '';
 
-    if (filterSelect.value === "all") {
-        todos.forEach(saveTodo);
+    if (todoList === "done") {
+
+        filterSelect.forEach(saveTodo);
     }
+
+
+    if (filterSelect.value === "all") {
+
+        todos.forEach(saveTodo);
+    } 
+    
 });
 
-
-
-//const doneBtn = document.createElement("button");
-    //doneBtn.classList.add("finish-todo");
-    //doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
-    //todo.appendChild(doneBtn);
 
 
 
