@@ -4,6 +4,7 @@ const todoInput = document.querySelector("#todo-input");
 const todoList = document.querySelector("#todo-list");
 const editForm = document.querySelector("#edit-form");
 const editInput = document.querySelector("#edit-input");
+const editId = document.querySelector("#edit-id");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 const filterSelect = document.querySelector("#filter-select");
 
@@ -11,9 +12,9 @@ let oldInputValue;
 
 /*
 * Status
-* P - pendente
+* P - Pendente
 * F - Finalizado
-* */
+*/
 
 //LocalStorage
 const localStorageTodos = JSON.parse(localStorage
@@ -110,19 +111,23 @@ const toggleForms = () => {
     todoList.classList.toggle("hide");
 };
 
-const updateTodo = (text) => {
-
-    const todos = document.querySelectorAll(".todo");
-
+const updateTodo = (id, name) => {
+    
     todos.forEach((todo) => {
 
-        let todoTitle = todo.querySelector("h3");
+        if (todo.id === Number(id)) {
 
-        if (todoTitle.innerText === oldInputValue) {
-
-            todoTitle.innerText = text;
+            todo.name = name;
         }
     })
+
+    updateLocalStorage();   
+}
+
+const selectStatus = (status) => {
+
+    const filterTodos = todos.filter(todo => todo.status === status)
+    filterTodos.forEach(saveTodo);
 }
 
 const init = () => {
@@ -180,6 +185,7 @@ document.addEventListener("click", (e) => {
         toggleForms();
 
         editInput.value = todoTitle;
+        editId.value = id;
         oldInputValue = todoTitle;
     }
 });
@@ -191,24 +197,23 @@ cancelEditBtn.addEventListener("click", (e) => {
 });
 
 filterSelect.addEventListener("change", (e) => {
-    
-   const done = document.querySelectorAll(".todoDone");
 
-   done.forEach((todoDone) => {
+   todoList.innerHTML = ''; 
 
-        if (filterSelect.value == "done") {
-            
-            todos.forEach(todoDone);
-        }
-   })
+   if (filterSelect.value === "done") {
 
-   todoList.innerHTML = '';
+        selectStatus("F");
+    }
+
+    if (filterSelect.value === "todo") {
+
+        selectStatus("P");
+    } 
   
     if (filterSelect.value === "all") {
 
         todos.forEach(saveTodo);
-    } 
-    
+    }    
 });
 
 editForm.addEventListener("submit", (e) => {
@@ -219,7 +224,7 @@ editForm.addEventListener("submit", (e) => {
 
     if (editInputValue) {
 
-        updateTodo(editInputValue);
+        updateTodo(editId.value, editInputValue);
     }
 
     toggleForms();
