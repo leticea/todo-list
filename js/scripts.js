@@ -23,6 +23,7 @@ const updateLocalStorage = () => {
 const updateTodoLocalStorage = id => {
 
     todos.forEach((todo) => {
+
         if (todo.id == id) {
             todo.status = todo.status == "P" ? "F" : "P";
         }
@@ -34,6 +35,7 @@ const updateTodoLocalStorage = id => {
 const generateID = () => Math.round(Math.random() * 1000);
 
 const removeTodo = id => {
+
     todos = todos.filter(todo => 
       todo.id != id)
 
@@ -54,7 +56,9 @@ const addTodosArray = (name, status) => {
 
 //Funções
 const saveTodo = ({ name, status, id }) => {
+
     if (id === '') {
+
         addTodosArray(name, "P");
     }
     
@@ -63,6 +67,7 @@ const saveTodo = ({ name, status, id }) => {
     todo.classList.add("todo");
 
     if (status !== "P") {
+
         todo.classList.add("done");
     }
 
@@ -129,6 +134,7 @@ todoForm.addEventListener("submit", (e) => {
     const inputValue = todoInput.value;
 
     if (inputValue) {
+        
         saveTodo({ name: inputValue, status: "P", id: '' });
     }
 });
