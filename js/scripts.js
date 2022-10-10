@@ -37,7 +37,7 @@ const updateTodoLocalStorage = id => {
         }
     });
 
-    updateLocalStorage()
+    updateLocalStorage();    
 }
     
 const generateID = () => Math.round(Math.random() * 1000);
@@ -59,7 +59,7 @@ const addTodosArray = (name, status) => {
         status: status
     });
 
-    updateLocalStorage()
+    updateLocalStorage();
 }
 
 //Funções
@@ -121,7 +121,8 @@ const updateTodo = (id, name) => {
         }
     })
 
-    updateLocalStorage();   
+    updateLocalStorage();
+    init(); //atualizar a página após edição - ok
 }
 
 const selectStatus = (status) => {
@@ -180,7 +181,7 @@ document.addEventListener("click", (e) => {
 
         const id = parentEl.getAttribute("data-id");
         parentEl.classList.toggle("edit");
-        updateTodoLocalStorage(id);
+        updateTodoLocalStorage(id);        
 
         toggleForms();
 
