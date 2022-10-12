@@ -118,7 +118,7 @@ const updateTodo = (id, name) => {
         if (todo.id === Number(id)) {
 
             todo.name = name;
-        }
+        }        
     })
 
     updateLocalStorage();
@@ -128,7 +128,7 @@ const updateTodo = (id, name) => {
 const selectStatus = (status) => {
 
     const filterTodos = todos.filter(todo => todo.status === status)
-    filterTodos.forEach(saveTodo);
+    filterTodos.forEach(saveTodo);    
 }
 
 const init = () => {
