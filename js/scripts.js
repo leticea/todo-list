@@ -181,7 +181,7 @@ document.addEventListener("click", (e) => {
 
         const id = parentEl.getAttribute("data-id");
         parentEl.classList.toggle("edit");
-        updateTodoLocalStorage(id);        
+        updateTodoLocalStorage(id);       
 
         toggleForms();
 
