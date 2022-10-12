@@ -34,8 +34,7 @@ const updateTodoLocalStorage = id => {
 
         if (todo.id == id) {
             todo.status = todo.status == "P" ? "F" : "P";
-        }
-        
+        }        
     });
 
     updateLocalStorage();    
