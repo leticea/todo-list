@@ -13,7 +13,7 @@ const btn = document.querySelector("#erase-button");
 let oldInputValue;
 
 /*
-* Status
+* Status:
 * P - Pendente
 * F - Finalizado
 */
@@ -182,8 +182,7 @@ document.addEventListener("click", (e) => {
     if (targetEl.classList.contains("edit-todo")) {
 
         const id = parentEl.getAttribute("data-id");
-        parentEl.classList.toggle("edit");
-        updateTodoLocalStorage(id);       
+        parentEl.classList.toggle("edit");    
 
         toggleForms();
 
@@ -199,14 +198,21 @@ cancelEditBtn.addEventListener("click", (e) => {
     toggleForms();
 });
 
-btn.addEventListener("click", (e) => {
+btn.addEventListener("click", (e) => {    
 
-    e.preventDefault();
+    todoList.innerHTML = '';
 
-    const search = document.querySelector("#search-input");
+    e.preventDefault();    
 
-    const value = searchInput.value;;;
-})
+    const value = searchInput.value;
+
+    if (searchInput) {
+
+        todoTitle;
+    }
+
+    console.log(value);
+});
 
 filterSelect.addEventListener("change", (e) => {
 
