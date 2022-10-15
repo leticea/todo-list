@@ -7,6 +7,7 @@ const editInput = document.querySelector("#edit-input");
 const editId = document.querySelector("#edit-id");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 const filterSelect = document.querySelector("#filter-select");
+const searchInput = document.querySelector("#search-input")
 
 let oldInputValue;
 
