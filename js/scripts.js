@@ -11,7 +11,7 @@ const searchInput = document.querySelector("#search-input");
 const btn = document.querySelector("#erase-button");
 
 let oldInputValue;
-let regexp = new RegExp(/[a-z]/i);
+let regexp = new RegExp(/[a-z]/gi);
 
 /*
 * Status:
@@ -207,9 +207,9 @@ btn.addEventListener("click", (e) => {
 
     const value = searchInput.value;
 
-    let todoTitle = regexp.exec(value);
+    let todos = regexp.exec(value);
 
-    console.log(todoTitle);
+    console.log(todos);
 });
 
 filterSelect.addEventListener("change", (e) => {
