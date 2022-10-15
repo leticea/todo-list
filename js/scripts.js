@@ -201,15 +201,13 @@ cancelEditBtn.addEventListener("click", (e) => {
 
 btn.addEventListener("click", (e) => {    
 
-    todoList.innerHTML = '';
-
     e.preventDefault();    
 
     const value = searchInput.value;
 
-    let todos = regexp.exec(value);
+    let todos = value;
 
-    console.log(todos);
+    console.log(regexp.value);
 });
 
 filterSelect.addEventListener("change", (e) => {
