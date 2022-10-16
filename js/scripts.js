@@ -200,9 +200,7 @@ cancelEditBtn.addEventListener("click", (e) => {
 
 btn.addEventListener("click", (e) => {    
 
-    e.preventDefault();    
-
-    todoList.innerHTML = '';
+    e.preventDefault();
 
     let regexp = new RegExp(/[a-z]/gi);
 
