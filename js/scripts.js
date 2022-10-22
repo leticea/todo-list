@@ -8,7 +8,7 @@ const editId = document.querySelector("#edit-id");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 const filterSelect = document.querySelector("#filter-select");
 const searchInput = document.querySelector("#search-input");
-const btn = document.querySelector("#erase-button");
+const searchbtn = document.querySelector("#erase-button");
 
 let oldInputValue;
 
@@ -198,18 +198,8 @@ cancelEditBtn.addEventListener("click", (e) => {
     toggleForms();
 });
 
-btn.addEventListener("click", (e) => {    
-
-    e.preventDefault();
-
-    let regexp = new RegExp(/[a-z]/gi);
-
-    const value = searchInput.value;
-
-    let todos = regexp.exec(value);
-
-    console.log(todos);
-});
+searchInput.value;
+console.log(searchInput);
 
 filterSelect.addEventListener("change", (e) => {
 
