@@ -8,7 +8,7 @@ const editId = document.querySelector("#edit-id");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 const filterSelect = document.querySelector("#filter-select");
 const searchInput = document.querySelector("#search-input");
-const searchBtn = document.querySelector("#erase-button");
+const eraseBtn = document.querySelector("#erase-btn");
 
 let oldInputValue;
 
@@ -124,7 +124,7 @@ const updateTodo = (id, name) => {
     })
 
     updateLocalStorage();
-    init(); //atualizar a página após edição - ok
+    init(); //atualizar a página após edição
 }
 
 const selectStatus = (status) => {
@@ -198,12 +198,15 @@ cancelEditBtn.addEventListener("click", (e) => {
     toggleForms();
 });
 
-searchBtn.addEventListener("submit", (e) => {
+
+eraseBtn.addEventListener("click", (e) => {
 
     e.preventDefault();
 
     const searchInputValue = searchInput.value;
+
     console.log(searchInputValue);
+
 });
 
 filterSelect.addEventListener("change", (e) => {
