@@ -236,16 +236,16 @@ const getRandomIntegerInclusive = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
 
 const getRandomWord = () =>
-    searchInput[getRandomIntegerInclusive(0, searchInput.length - 1)]
+    todos[getRandomIntegerInclusive(0, todos.length - 1)]
 
-const randomWord = getRandomWord(todos)
+const randomWord = getRandomWord()
 
-searchInput.textContent = todos;
+searchInput.textContent = randomWord;
 
 searchInput.addEventListener("input", (e) => {
 
     const searchInputValue = e.target.value;
 
-        console.log(searchInputValue, todos.value);
+        console.log(searchInputValue, randomWord);
     
 });
