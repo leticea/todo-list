@@ -198,11 +198,6 @@ cancelEditBtn.addEventListener("click", (e) => {
     toggleForms();
 });
 
-searchInput.addEventListener("input", (e) => {
-
-    console.log(e.target.value);
-});
-
 filterSelect.addEventListener("change", (e) => {
 
    todoList.innerHTML = ''; 
@@ -235,4 +230,24 @@ editForm.addEventListener("submit", (e) => {
     }
 
     toggleForms();
+});
+
+const getRandomIntegerInclusive = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1)) + min;
+
+const getRandomWord = () =>
+    todoList[getRandomIntegerInclusive(0, todos.length - 1)]
+
+const randomWord = getRandomWord()
+
+todos.textContent = randomWord;
+
+searchInput.addEventListener("input", (e) => {
+
+    const searchInputValue = e.target.value;
+
+    if (searchInputValue === randomWord) {
+
+        console.log(searchInputValue, randomWord);
+    }
 });
