@@ -245,9 +245,5 @@ searchInput.addEventListener("input", (e) => {
 
     const searchInputValue = e.target.value;
 
-    if (searchInputValue === todo) {
-
-        console.log(todo.name);
-    }
-
+        console.log(searchInputValue, todo.name);        
 });
