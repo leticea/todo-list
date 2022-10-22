@@ -198,15 +198,9 @@ cancelEditBtn.addEventListener("click", (e) => {
     toggleForms();
 });
 
+searchInput.addEventListener("input", (e) => {
 
-eraseBtn.addEventListener("click", (e) => {
-
-    e.preventDefault();
-
-    const searchInputValue = searchInput.value;
-
-    console.log(searchInputValue);
-
+    console.log(e.target.value);
 });
 
 filterSelect.addEventListener("change", (e) => {
