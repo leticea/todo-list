@@ -232,23 +232,20 @@ editForm.addEventListener("submit", (e) => {
     toggleForms();
 });
 
-
-//const todo = todo.id;
-
 const getRandomIntegerInclusive = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
 
-const getRandomWord = () =>
+const getRandomTodo = () =>
     todos[getRandomIntegerInclusive(0, todos.length - 1)]
 
-const randomWord = getRandomWord()
+const todo = getRandomTodo()
 
-todos.textContent = randomWord;
+todos.textContent = todo;
 
 searchInput.addEventListener("input", (e) => {
 
     const searchInputValue = e.target.value;
 
-        console.log(searchInputValue, randomWord.name);
+        console.log(searchInputValue, todo.name);
     
 });
