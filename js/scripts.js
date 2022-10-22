@@ -8,7 +8,6 @@ const editId = document.querySelector("#edit-id");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 const filterSelect = document.querySelector("#filter-select");
 const searchInput = document.querySelector("#search-input");
-const eraseBtn = document.querySelector("#erase-btn");
 
 let oldInputValue;
 
@@ -246,6 +245,5 @@ searchInput.addEventListener("input", (e) => {
 
     const searchInputValue = e.target.value;
 
-        console.log(searchInputValue, todo.name);
-    
+        console.log(searchInputValue, todo.name);        
 });
