@@ -236,11 +236,11 @@ const getRandomIntegerInclusive = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
 
 const getRandomWord = () =>
-    todoList[getRandomIntegerInclusive(0, todos.length - 1)]
+    searchInput[getRandomIntegerInclusive(0, searchInput.length - 1)]
 
 const randomWord = getRandomWord()
 
-todos.textContent = randomWord;
+searchInput.textContent = randomWord;
 
 searchInput.addEventListener("input", (e) => {
 
