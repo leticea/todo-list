@@ -237,7 +237,7 @@ const getRandomIntegerInclusive = (min, max) =>
 const getRandomTodo = () =>
     todos[getRandomIntegerInclusive(0, todos.length - 1)]
 
-const todo = getRandomTodo()
+const todo = getRandomTodo(todos)
 
 todos.textContent = todo;
 
