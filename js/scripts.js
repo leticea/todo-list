@@ -1,5 +1,4 @@
-// Seleção de elementos
-
+// [Seleção de elementos pelo ID]
 const todoForm = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#todo-input");
 const todoList = document.querySelector("#todo-list");
@@ -16,18 +15,21 @@ const searchInput = document.querySelector("#search-input");
 * F - Finalizado
 */
 
-//LocalStorage
+// [LocalStorage - salva os todos]
 const localStorageTodos = JSON.parse(localStorage
     .getItem('todos'));
 
+// [Se todos não for nulo, ele salva no LocalStorage, senão, cria uma array vazio]
 let todos = localStorage
   .getItem('todos') !== null ? localStorageTodos : [];
 
+// [Atualiza o LocalStorage]
 const updateLocalStorage = () => {
 
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
+// [Verifica o status do todo (pendente ou finalizado)]
 const updateTodoLocalStorage = id => {
 
     todos.forEach((todo) => {
@@ -37,6 +39,7 @@ const updateTodoLocalStorage = id => {
         }        
     });
 
+    // [Atualiza o LocalStorage após atualizar o status]
     updateLocalStorage();    
 }
     
