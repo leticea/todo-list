@@ -119,8 +119,7 @@ const saveTodo = ({ name, status, id }) => {
     todoInput.value = "";
 };
 
-
-// [Faz o botão de editar funcionar]
+// [Faz o botão de editar funcionar e cria a classe escondida no HTML]
 const toggleForms = () => {
 
     editForm.classList.toggle("hide");
@@ -128,7 +127,7 @@ const toggleForms = () => {
     todoList.classList.toggle("hide");
 };
 
-
+// [Salva o todo após editado]
 const updateTodo = (id, name) => {
     
     todos.forEach((todo) => {
@@ -140,25 +139,28 @@ const updateTodo = (id, name) => {
     })
 
     updateLocalStorage();
-    init(); //atualizar a página após edição
+    init(); //atualiza a página após edição
 }
 
+// [Filtra o status referente a cada todo]
 const selectStatus = (status) => {
 
     const filterTodos = todos.filter(todo => todo.status === status)
     filterTodos.forEach(saveTodo);    
 }
 
+// [Pesquisa os todos de acordo com o nome]
 const searchTodos = value =>  {
 
     const filterTodos = todos.filter(todo => todo.name.match(value));
     console.log(filterTodos);
     
+    // [Faz aparecer na tela os valores]
     todoList.innerHTML = '';
-
     filterTodos.forEach(saveTodo);
 }
 
+// [Pega um valor aleatório entre os todos]
 const getRandomIntegerInclusive = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -167,8 +169,7 @@ const getRandomTodo = () =>
 
 const todo = getRandomTodo()
 
-todos.textContent = todo;
-
+// [Mostra os todos na tela]
 const init = () => {
 
     todoList.innerHTML = '';
@@ -176,9 +177,12 @@ const init = () => {
     todoInput.focus();
 }
 
+// [É necessário para iniciar o método]
 init();
 
-//Eventos
+// [EVENTOS]
+
+// [Cria o método para adicionar a tarefa]
 todoForm.addEventListener("submit", (e) => {
 
     e.preventDefault();
@@ -191,17 +195,21 @@ todoForm.addEventListener("submit", (e) => {
     }
 });
 
+// [Eventos referentes aos botões]
 document.addEventListener("click", (e) => {
 
+    // [Faz os botões funcionarem]
     const targetEl = e.target;
     const parentEl = targetEl.closest("div");
     let todoTitle;
 
+    // [Pega o valor do todo que vai editar (senão, aparece indefinido)]
     if (parentEl && parentEl.querySelector("h3")) {
         
         todoTitle = parentEl.querySelector("h3").innerText;
     }
 
+    // [Faz o botão de "feito" funcionar]
     if (targetEl.classList.contains("finish-todo")) {
 
         const id = parentEl.getAttribute("data-id");
@@ -209,6 +217,7 @@ document.addEventListener("click", (e) => {
         parentEl.classList.toggle("done");
     }
 
+    // [Faz o botão de "remover" funcionar]
     if (targetEl.classList.contains("remove-todo")) {
 
         const id = parentEl.getAttribute("data-id");
@@ -216,6 +225,7 @@ document.addEventListener("click", (e) => {
         parentEl.remove();
     }
 
+    // [Faz o botão de "editar" funcionar]
     if (targetEl.classList.contains("edit-todo")) {
 
         const id = parentEl.getAttribute("data-id");
@@ -223,21 +233,24 @@ document.addEventListener("click", (e) => {
 
         toggleForms();
 
+        // [Atualiza o valor do todo antigo para o novo]
         editInput.value = todoTitle;
         editId.value = id;
-        oldInputValue = todoTitle;
     }
 });
 
+// [Faz o botão de "cancelar" funcionar]
 cancelEditBtn.addEventListener("click", (e) => {
 
     e.preventDefault();
     toggleForms();
 });
 
+// [Separa os todos de acordo com o filtro selecionado]
 filterSelect.addEventListener("change", (e) => {
 
-   todoList.innerHTML = ''; 
+    // [Faz aparecer na tela]
+    todoList.innerHTML = ''; 
 
    if (filterSelect.value === "done") {
 
@@ -255,6 +268,7 @@ filterSelect.addEventListener("change", (e) => {
     }    
 });
 
+// [Edita o todo]
 editForm.addEventListener("submit", (e) => {
 
     e.preventDefault();
@@ -269,7 +283,7 @@ editForm.addEventListener("submit", (e) => {
     toggleForms();
 });
 
-
+// [Pesquisa os todos]
 searchInput.addEventListener("input", (e) => {
 
     const searchInputValue = e.target.value;
