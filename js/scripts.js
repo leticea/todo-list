@@ -42,18 +42,11 @@ const updateTodoLocalStorage = id => {
     // [Atualiza o LocalStorage após atualizar o status]
     updateLocalStorage();    
 }
-    
+
+// [Gerar o ID referente ao todo]
 const generateID = () => Math.round(Math.random() * 1000);
 
-const removeTodo = id => {
-
-    todos = todos.filter(todo => 
-      todo.id != id)
-
-    updateLocalStorage();
-    init();
-}
-
+// [Pegando as referências do todo]
 const addTodosArray = (name, status) => {
 
     todos.push({
@@ -65,7 +58,19 @@ const addTodosArray = (name, status) => {
     updateLocalStorage();
 }
 
-//Funções
+// [Remover o todo de acordo com o ID]
+const removeTodo = id => {
+
+    todos = todos.filter(todo => 
+      todo.id != id)
+
+    updateLocalStorage();
+    init();
+}
+
+// [FUNÇÕES]
+
+// [Adiciona o novo todo e cria como pendente]
 const saveTodo = ({ name, status, id }) => {
 
     if (id === '') {
@@ -73,45 +78,56 @@ const saveTodo = ({ name, status, id }) => {
         addTodosArray(name, "P");
     }
     
+    // [Insere um data-id no HTML para cada todo]
     const todo = document.createElement("div");
     todo.setAttribute("data-id", id);
     todo.classList.add("todo");
 
-    if (status !== "P") {
-
-        todo.classList.add("done");
-    }
-
+    // [Cria um todoTitle(nome da tarefa)]
     const todoTitle = document.createElement("h3");
     todoTitle.innerText = name;
     todo.appendChild(todoTitle);
 
+    // [Cria o botão de "finalizado"]
     const doneBtn = document.createElement("button");
     doneBtn.classList.add("finish-todo");
     doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
     todo.appendChild(doneBtn);
 
+    // [Cria o botão de "editar"]
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-todo");
     editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
     todo.appendChild(editBtn);
 
+    // [Cria o botão de "remover"]
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("remove-todo");
     deleteBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
     todo.appendChild(deleteBtn);
 
+    // [Salva o status de "pendente" para "feito".]
+    if (status !== "P") {
+
+        todo.classList.add("done");
+    }
+
+    // [Cria a lista dos todos]
     todoList.appendChild(todo);
 
+    // [Limpar o campo do input da tarefa]
     todoInput.value = "";
 };
 
+
+// [Faz o botão de editar funcionar]
 const toggleForms = () => {
 
     editForm.classList.toggle("hide");
     todoForm.classList.toggle("hide");
     todoList.classList.toggle("hide");
 };
+
 
 const updateTodo = (id, name) => {
     
