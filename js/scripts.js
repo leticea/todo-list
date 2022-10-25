@@ -1,4 +1,5 @@
 // Seleção de elementos
+
 const todoForm = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#todo-input");
 const todoList = document.querySelector("#todo-list");
@@ -8,8 +9,6 @@ const editId = document.querySelector("#edit-id");
 const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 const filterSelect = document.querySelector("#filter-select");
 const searchInput = document.querySelector("#search-input");
-
-let oldInputValue;
 
 /*
 * Status:
@@ -102,7 +101,6 @@ const saveTodo = ({ name, status, id }) => {
     todoList.appendChild(todo);
 
     todoInput.value = "";
-    todoInput.focus();
 };
 
 const toggleForms = () => {
@@ -132,12 +130,33 @@ const selectStatus = (status) => {
     filterTodos.forEach(saveTodo);    
 }
 
+const searchTodos = value =>  {
+
+    const filterTodos = todos.filter(todo => todo.name.match(value));
+    console.log(filterTodos);
+    
+    todoList.innerHTML = '';
+
+    filterTodos.forEach(saveTodo);
+}
+
+const getRandomIntegerInclusive = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1)) + min;
+
+const getRandomTodo = () =>
+    todos[getRandomIntegerInclusive(0, todos.length - 1)]
+
+const todo = getRandomTodo()
+
+todos.textContent = todo;
+
 const init = () => {
 
     todoList.innerHTML = '';
     todos.forEach(saveTodo);
+    todoInput.focus();
 }
-  
+
 init();
 
 //Eventos
@@ -231,19 +250,10 @@ editForm.addEventListener("submit", (e) => {
     toggleForms();
 });
 
-const getRandomIntegerInclusive = (min, max) =>
-    Math.floor(Math.random() * (max - min + 1)) + min;
-
-const getRandomTodo = () =>
-    todos[getRandomIntegerInclusive(0, todos.length - 1)]
-
-const todo = getRandomTodo(todos)
-
-todos.textContent = todo;
 
 searchInput.addEventListener("input", (e) => {
 
     const searchInputValue = e.target.value;
 
-        console.log(searchInputValue, todo.name);        
+        searchTodos(searchInputValue);
 });
