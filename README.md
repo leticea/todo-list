@@ -17,13 +17,13 @@
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) 
 - [HTML5](https://developer.mozilla.org/pt-BR/docs/Web/HTML/HTML5) 
 - [CSS3](https://developer.mozilla.org/pt-BR/docs/Web/CSS) 
+- [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) 
 
 ## 💻 Projeto
 
-Aplicação com JavaScript de um To Do List simples.
+Aplicação com JavaScript de uma To Do List simples.
 
 Aula do canal [Matheus Battisti](https://www.youtube.com/watch?v=HSssE1PRQcA)
 
